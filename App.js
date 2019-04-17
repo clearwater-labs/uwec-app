@@ -2,8 +2,15 @@
  * Clearwater Labs 2019
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native';
+import React, { Component } from "react";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight
+} from "react-native";
 import LaundryNotifier from "./src/LaundryNotifier/LaundryNotifier.js";
 
 export default class App extends Component {
@@ -11,18 +18,27 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>UWEC</Text>
-        <View style = {styles.laundryView}>
-          <Image 
-            style={styles.laundry}
+        <View style={styles.laundryView}>
+        <Text>Laundry Notifier</Text>
+          <Image
+            style={styles.laundryImage}
             source={require("./src/assets/laundry.png")}
           />
         </View>
-        <View style = {styles.newsView}>
-          <Image 
-            style={styles.news}
+        <View style={styles.newsAndCarText}>
+          <Text style={styles.newsText}> Spectator</Text>
+          <Text style={styles.BluGoldIdText}> BluGold ID</Text>
+        </View>
+        <View style={styles.newsAndCarView}>
+          <Image
+            style={styles.newsImage}
             source={require("./src/assets/news.jpg")}
           />
-          </View>
+          <Image
+            style={styles.cardImage}
+            source={require("./src/assets/credit-card.jpg")}
+          />
+        </View>
       </View>
     );
   }
@@ -30,28 +46,54 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   },
   title: {
-    fontSize: 20,
-    textAlign: 'left',
+    fontSize: 25,
+    textAlign: "left",
     margin: 20,
     marginTop: 40
   },
-  laundry: {
-    height: "60%",
-    width: "90%"
+  laundryImage: {
+    height: "100%",
+    width: "90%",
+    borderRadius: 10
   },
   laundryView: {
     alignItems: "center",
-    backgroundColor: "red"
+    justifyContent: "center",
+    height: "50%", //30
+    width: "100%",
+    paddingBottom: "5%"
   },
-  newsView: {
+  newsAndCarText: {
+    flex: 1,
+    flexDirection: "row",
+    //backgroundColor: "red",
+    justifyContent: "space-around",
+    alignItems:"center"
   },
-  news: {
-    height: "40%",
-    width: "30%",
-    paddingLeft: "30%"
+  newsText: {
+    justifyContent: "flex-start"
+  },
+  BluGoldIdText: {
+    justifyContent: "flex-start"
+   
+  },
+  newsAndCarView: {
+    flex: 4,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "flex-end"  
+  },
+  newsImage: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 10
+  },
+  cardImage: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 10
   }
-
 });
