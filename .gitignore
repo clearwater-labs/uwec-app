@@ -54,16 +54,6 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
-node_modules
+
+# Ignore node modules
+node_modules/
