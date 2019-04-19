@@ -4,21 +4,30 @@
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 import React, { Component } from "react";
-import {StyleSheet,Text,View,Image, TouchableOpacity } from "react-native";
+import {StyleSheet,Text,View,Image, TouchableOpacity, TouchableHighlight } from "react-native";
 import Laundry from './src/LaundryNotifier/Laundry.js';
+import Spectator from './Spectator.js';
 import styles from './StyleSheet'
 
 
 class HomeScreen extends Component {
+  static navigationOptions = {
+    title: 'UWEC',
+    headerStyle: {
+      //you can alter color here : D
+    },
+    // headerTintColor: '#fff',
+    headerTitleStyle: {
+      position: "absolute",
+      left: 0
 
-  constructor(props){
-    super(props)
-  }
+    },
+  };
+
   render() {
     //const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>UWEC</Text>
         <View style={styles.laundryView}>
           <Text>Laundry Notifier</Text>
           <TouchableOpacity               
@@ -34,10 +43,14 @@ class HomeScreen extends Component {
           <Text style={styles.BluGoldIdText}> BluGold ID</Text>
         </View>
         <View style={styles.newsAndCarView}>
+          <TouchableHighlight           
+          onPress={()=>this.props.navigation.navigate("Spectator")}>   
           <Image
             style={styles.newsImage}
             source={require("./src/assets/news.jpg")}
           />
+         </TouchableHighlight>  
+
           <Image
             style={styles.cardImage}
             source={require("./src/assets/credit-card.jpg")}
@@ -55,6 +68,9 @@ const HomePageNavigator = createStackNavigator ({
   },
   Laundry: {
     screen: Laundry,
+  },
+  Spectator: {
+    screen: Spectator
   }
 });
 
