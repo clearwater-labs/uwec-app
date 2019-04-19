@@ -2,29 +2,33 @@
  * Clearwater Labs 2019
  */
 
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 import React, { Component } from "react";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableHighlight
-} from "react-native";
-import LaundryNotifier from "./src/LaundryNotifier/LaundryNotifier.js";
+import {StyleSheet,Text,View,Image, TouchableOpacity } from "react-native";
+import Laundry from './src/LaundryNotifier/Laundry.js';
+import styles from './StyleSheet'
 
-export default class App extends Component {
+
+class HomeScreen extends Component {
+
+  constructor(props){
+    super(props)
+  }
   render() {
+    //const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>UWEC</Text>
         <View style={styles.laundryView}>
-        <Text>Laundry Notifier</Text>
-          <Image
-            style={styles.laundryImage}
-            source={require("./src/assets/laundry.png")}
-          />
-        </View>
+          <Text>Laundry Notifier</Text>
+          <TouchableOpacity               
+            onPress={()=>this.props.navigation.navigate("Laundry")}> 
+            <Image
+              style={styles.laundryImage}
+              source={require("./src/assets/laundry.png")}
+            />
+           </TouchableOpacity> 
+          </View>
         <View style={styles.newsAndCarText}>
           <Text style={styles.newsText}> Spectator</Text>
           <Text style={styles.BluGoldIdText}> BluGold ID</Text>
@@ -44,56 +48,15 @@ export default class App extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff"
+
+const HomePageNavigator = createStackNavigator ({
+  Home: {
+    screen: HomeScreen,
   },
-  title: {
-    fontSize: 25,
-    textAlign: "left",
-    margin: 20,
-    marginTop: 40
-  },
-  laundryImage: {
-    height: "100%",
-    width: "90%",
-    borderRadius: 10
-  },
-  laundryView: {
-    alignItems: "center",
-    justifyContent: "center",
-    height: "50%", //30
-    width: "100%",
-    paddingBottom: "5%"
-  },
-  newsAndCarText: {
-    flex: 1,
-    flexDirection: "row",
-    //backgroundColor: "red",
-    justifyContent: "space-around",
-    alignItems:"center"
-  },
-  newsText: {
-    justifyContent: "flex-start"
-  },
-  BluGoldIdText: {
-    justifyContent: "flex-start"
-   
-  },
-  newsAndCarView: {
-    flex: 4,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "flex-end"  
-  },
-  newsImage: {
-    height: "100%",
-    width: "40%",
-    borderRadius: 10
-  },
-  cardImage: {
-    height: "100%",
-    width: "40%",
-    borderRadius: 10
+  Laundry: {
+    screen: Laundry,
   }
 });
+
+const App = createAppContainer(HomePageNavigator);
+export default App;
