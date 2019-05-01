@@ -6,22 +6,29 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React from 'react';
+import Component from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   Image,
   TouchableOpacity,
-  TouchableHighlight,
-  RCTNativeAppEventEmitter
+  TouchableHighlight
 } from 'react-native';
 import Laundry from './Laundry.js';
 import { ApolloProvider, createNetworkInterface } from 'react-apollo';
 import styles from './StyleSheet';
 import Spectator from './Spectator.js';
-import { ApolloClient } from 'apollo-client';
-
+import ApolloClient from 'apollo-boost';
+import {
+  createStackNavigator,
+  createAppContainer
+} from 'react-native-navigation';
+const networkInterface = () => createNetworkInterface('http://localhost:4000/');
+this.client = new ApolloClient({
+  networkInterface,
+  dataIdFromObject: r => r.id
+});
 class HomeScreen extends Component {
   static navigationOptions = {
     title: 'UWEC',
@@ -31,19 +38,12 @@ class HomeScreen extends Component {
       left: 0
     }
   };
-
-  constructor(...args) {
-    super(...args);
-
-    const networkInterface = createNetworkInterface('http://localhost:4000/');
-    this.client = new ApolloClient({
-      networkInterface,
-      dataIdFromObject: r => r.id
-    });
+  constructor(props) {
+    super(props);
   }
 
   render() {
-    //const {navigate} = this.props.navigation;
+    //const { navigate } = this.props.navigation;
     return (
       <ApolloProvider client={this.client}>
         <View style={styles.container}>
@@ -83,17 +83,18 @@ class HomeScreen extends Component {
   }
 }
 
-const HomePageNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen
-  },
-  Laundry: {
-    screen: Laundry
-  },
-  Spectator: {
-    screen: Spectator
-  }
-});
+const HomePageNavigator = () =>
+  createStackNavigator({
+    Home: {
+      screen: HomeScreen
+    },
+    Laundry: {
+      screen: Laundry
+    },
+    Spectator: {
+      screen: Spectator
+    }
+  });
 
-const App = createAppContainer(HomePageNavigator);
-export default AppFrontPage;
+const App = () => createAppContainer(HomePageNavigator);
+export default HomeScreen;

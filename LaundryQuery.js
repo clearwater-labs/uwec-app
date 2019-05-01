@@ -1,6 +1,6 @@
 //Clearwater Labs 2019
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, RCTNativeAppEventEmitter } from 'react-native';
+import Text from 'react-native';
 import { graphql, ApolloProvider } from 'react-apollo';
 import gql from 'graphql-tag';
 

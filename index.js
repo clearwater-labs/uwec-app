@@ -1,17 +1,19 @@
 /**
  * @format
  */
-
-import AppFrontPage from './AppFrontPage';
+import React from 'react-native';
+import HomeScreen from './AppFrontPage.js';
 import { name as appName } from './app.json';
-import { AppRegistry } from 'react-native';
-import { ApolloClient } from 'apollo-client';
-import { ApolloProvider } from 'react-apollo';
-import createStackNavigator from 'react-native-custom-components';
-const client = new ApolloClient();
+import AppRegistry from 'react-native';
+import ApolloClient from 'apollo-boost';
+import ApolloProvider from 'react-apollo';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/'
+});
 const App = () => (
   <ApolloProvider client={client}>
-    <AppFrontPage />
+    <HomeScreen />
   </ApolloProvider>
 );
 AppRegistry.registerComponent(appName, () => App);
