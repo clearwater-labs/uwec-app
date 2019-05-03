@@ -3,9 +3,9 @@
  */
 import React from 'react-native';
 import HomeScreen from './AppFrontPage.js';
-import { name as appName } from './app.json';
-import AppRegistry from 'react-native';
-import ApolloClient from 'apollo-boost';
+import { appName as name } from './app.json';
+import { AppRegistry } from 'react-native';
+import ApolloClient  from 'apollo-boost';
 import ApolloProvider from 'react-apollo';
 
 const client = new ApolloClient({
@@ -16,4 +16,4 @@ const App = () => (
     <HomeScreen />
   </ApolloProvider>
 );
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(name, () => App);

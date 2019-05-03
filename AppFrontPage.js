@@ -1,13 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React from 'react';
-import Component from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -24,6 +15,8 @@ import {
   createStackNavigator,
   createAppContainer
 } from 'react-native-navigation';
+
+
 const networkInterface = () => createNetworkInterface('http://localhost:4000/');
 this.client = new ApolloClient({
   networkInterface,
@@ -50,7 +43,7 @@ class HomeScreen extends Component {
           <View style={styles.laundryView}>
             <Text>Laundry Notifier</Text>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Laundry')}
+             onPress={() => {this.props.navigation.navigate('Laundry')}}
             >
               <Image
                 style={styles.laundryImage}
@@ -78,7 +71,7 @@ class HomeScreen extends Component {
             />
           </View>
         </View>
-      </ApolloProvider>
+       </ApolloProvider> 
     );
   }
 }
@@ -97,4 +90,4 @@ const HomePageNavigator = () =>
   });
 
 const App = () => createAppContainer(HomePageNavigator);
-export default HomeScreen;
+export default App;
